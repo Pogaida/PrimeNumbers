@@ -2,17 +2,22 @@ public class Numbers {
     public static void main(String[] args) {
         //generujemy liczbę
         for (int number = 2; number <= 1_000; number++) {
-            //podajemy dzielnik na 1 ponieważ (liczba % 1 = liczba) zawsze jest prawdą
-            int divider = 1;
-            for (int i = number; i >= 2; i--) {
-                //sprawdzmy czy liczba ma więcej niż jeden dzielnik
+            int[] d = new int[3];
+            int divider = 0;
+            for (int i = 1, j = 0; i <= number; i++) {
+                //sprawdzmy ile liczba ma dzielników
                 if(number % i == 0) {
                     divider++;
+                    if(divider <= 3){
+                        d[j] = i;
+                        j++;
+                    }
                 }
             }
-            //jeśli liczba ma tylko dwa dzielniki (numer oraz 1) to jest to liczba pierwsza
-            if(divider == 2){
-                System.out.println("[" + number + "]");
+            //na podstawie ilości dzielników wypisujemy liczbę
+            if(divider >= 3){
+                System.out.print("[" + number + "] => ");
+                System.out.println(d[1]);
             }
         }
     }
