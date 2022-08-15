@@ -7,12 +7,12 @@ public class Numbers {
         Scanner scanner = new Scanner(System.in);
         long alfaTime = System.currentTimeMillis();
 
-        for (int number = 1; number <= 200_000; number++) {
+        for (int number = 1; number <= 5_000_000; number++) {
             ileDzielnikow(zapis, number);
-            if(number % 10_000 == 0){
+            if(number % 50_000 == 0){
                 System.out.print(".");
             }
-            if(number % 100_000 == 0){
+            if(number % 1_000_000 == 0){
                 System.out.println();
             }
         }
@@ -27,9 +27,11 @@ public class Numbers {
         int divider = 0;
         for (int i = 1; i <= number; i++) {
             if(number % i == 0) divider++;
-            if(divider == 2 && i < number || divider == 1 && i >= 440) {
+            boolean warunekOne = (divider == 2 && i < number);
+            boolean warunekTwo = (divider == 1 && i >= 1000);
+            if(warunekOne || warunekTwo) {
                 //do sprawdzania dzileników (kosmetyczne)
-//                if(i >= 440){
+//                if(i >= 995){
 //                    System.out.println("Nr."+number + " -> " + i);
 //                }
                 divider++;
