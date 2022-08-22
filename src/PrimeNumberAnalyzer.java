@@ -1,36 +1,27 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnalizatorLiczbPierwszych {
-    List<Integer> zapis = new ArrayList<>();
-
-    public void getIndex(int index) {
-        try {
-            System.out.println(zapis.get(index));
-
-        }catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("poza granicą");
-        }
-    }
+public class PrimeNumberAnalyzer {
+    private final List<Integer> record = new ArrayList<>();
 
     public int getSize() {
-        return zapis.size();
+        return record.size();
     }
 
-    public void generowanieLiczb(int from, int to) {
-        for (int liczba = from; liczba <= to; liczba++) {
-            czyLiczbaJestPierwsza(liczba);
+    public void generatingNumbers(int from, int to) {
+        for (int number = from; number <= to; number++) {
+            whetherTheNumberIsPrime(number);
         }
     }
 
-    public void czyLiczbaJestPierwsza(int liczba) {
-        int dzielnik = 0;
+    public void whetherTheNumberIsPrime(int number) {
+        int divider = 0;
         //Sprawdzamy ile liczba ma dzielników na początku mamy 0
 
-        for (int i = 1; i <= liczba; i++) {
+        for (int i = 1; i <= number; i++) {
             //Sprawdzamy czy dana liczba jest podzielna bez reszty przez (i)
             //Jeśli tak to dodajemy ilość dzielników
-            if(liczba % i == 0) dzielnik++;
+            if(number % i == 0) divider++;
 
             //Następnie od razu sprawdzamy czy liczba ma już 2 dzielniki
             //oraz czy (i) jest mniejsze od liczby wtedy mamy pewność że,
@@ -45,14 +36,14 @@ public class AnalizatorLiczbPierwszych {
             //Ten warunek jest tak samo ważny jak pierwszy dlatego że,
             //bez nich program działa 10 minut a z nimi max 5 sekund
             //skok wydajności jest kolosalny
-            if((dzielnik == 2 && i < liczba) || (dzielnik == 1 && i >= 1000)) {
-                dzielnik++;
+            if((divider == 2 && i < number) || (divider == 1 && i >= 1000)) {
+                divider++;
                 break;
             }
         }
         //Następnie po zakończeniu liczenia zapisujemy liczbę pierszą w liście zapis
-        if(dzielnik == 2){
-            zapis.add(liczba);
+        if(divider == 2){
+            record.add(number);
         }
     }
 }

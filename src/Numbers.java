@@ -2,18 +2,23 @@ import java.util.Scanner;
 
 public class Numbers {
     public static void main(String[] args) {
-        AnalizatorLiczbPierwszych sprawdz = new AnalizatorLiczbPierwszych();
+        PrimeNumberAnalyzer check = new PrimeNumberAnalyzer();
         Scanner scanner = new Scanner(System.in);
 
         //Generujemy liczby przykładowo od 1 do 5_000_000
-        sprawdz.generowanieLiczb(1, 5_000_000);
+        check.generatingNumbers(1, 5_000_000);
 
-        //Sprawdzamy rozmiar listy
-        System.out.println("Rozmiar 1 do " + sprawdz.getSize());
+        //Sprawdzamy rozmiar listy i podajemy użytkownikowi
+        System.out.println("List size 1 do " + check.getSize());
 
-        //Wpisujemy index = (komurkę z listy) liczby pierwszej jaki chcemy zobaczyć
+        //Wpisujemy komurkę z listy i wyskakuje nam liczba pierwsza jaką chcemy zobaczyć
         while (true){
-            sprawdz.getIndex(scanner.nextInt()-1);
+            try {
+                System.out.println(scanner.nextInt()-1);
+
+            }catch (ArrayIndexOutOfBoundsException e){
+                System.out.println("Out of bounds");
+            }
         }
     }
 }
