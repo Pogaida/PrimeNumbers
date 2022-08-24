@@ -2,47 +2,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrimeNumberRangeAnalyzer {
-    private final List<Integer> record = new ArrayList<>();
+    private final List<Integer> record = new ArrayList<>(664579);
 
-    //ustawia pierwszą liczbę pierwszą (2)
+    //konstruktor wywoujący generowanie liczb
     public PrimeNumberRangeAnalyzer(int from, int to) {
+        record.add(2);
         generatingNumbers(from, to);
     }
 
-    //zwraca daną komurkę z listy podaną przez użytkownika
-    public int getRecordOfList(int cell) {
-        return record.get(cell);
-    }
-
-    //zwraca rozmiar listy
+    //zwraca Rozmiar listy
     public int getSizeOfList() {
         return record.size();
     }
 
+    //zwraca daną komurkę z listy podaną przez użytkownika
+    public boolean isNumberOfList(int numer) {
+        return record.contains(numer);
+    }
+
+    public int getRecordOfList(int cell) {
+        return record.get(cell);
+    }
+
     //generuje liczby z podanego przedziału
     private void generatingNumbers(int from, int to) {
-        //generuje liczby z podanego przedziału
         for (int number = from; number <= to; number++) {
-            if (isNumberPrime(number))
+            if (isNumberPrime(number)){
                 record.add(number);
+            }
         }
     }
 
     //Sprawdza czy liczba jest pierwsza
     public boolean isNumberPrime(int number) {
-        if (number == 1) {
+        if (number == 1 || number == 2) {
             return false;
         }
-        if (number == 2) {
-            return true;
-        }
         int divider = 1;
-        for (int i = 2; i <= number; i++) {
-            if (number % i == 0) divider++;
-            if (divider == 2 && i < number) {
+        for (Integer integer : record) {
+            if (number % integer == 0) divider++;
+            if (divider == 2 && integer < number) {
                 return false;
             }
-            if (divider == 1 && i > Math.sqrt(number)) {
+            if (divider == 1 && integer > Math.sqrt(number)) {
                 break;
             }
         }

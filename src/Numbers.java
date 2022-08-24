@@ -2,21 +2,35 @@ import java.util.Scanner;
 
 public class Numbers {
     public static void main(String[] args) {
-        PrimeNumberRangeAnalyzer check = new PrimeNumberRangeAnalyzer(1, 1_000_000);
+        PrimeNumberRangeAnalyzer check = new PrimeNumberRangeAnalyzer(1, 10_000_000);
         Scanner scanner = new Scanner(System.in);
 
-        //Sprawdzamy rozmiar listy i podajemy użytkownikowi
-        System.out.println("List size = " + check.getSizeOfList());
-
-        //Wpisujemy komurkę z listy i wyskakuje nam liczba pierwsza jaką chcemy zobaczyć
+        //Wpisujemy liczbę i sprawdzamy czy jest na liście
+        System.out.println("1.Liczba");
+        System.out.println("2.Komurka od 1 do " + check.getSizeOfList());
         while (true){
-            try {
-                System.out.print("Podaj liczbę ");
-                int number = scanner.nextInt();
-                System.out.println(check.isNumberPrime(number));
-            }
-            catch (ArrayIndexOutOfBoundsException e){
-                System.out.println("Out of bounds");
+            System.out.print("\nWybór:");
+            switch (scanner.nextInt()){
+                case 1:
+                    System.out.print("Podaj:");
+                    int number = scanner.nextInt();
+                    boolean isOnList = check.isNumberOfList(number);
+                    if(isOnList){
+                        System.out.println("TRUE");
+                    }
+                    else {
+                        System.out.println("FALSE");
+                    }
+                    break;
+                case 2:
+                    System.out.print("Podaj:");
+                    int cell = scanner.nextInt();
+                    try {
+                        System.out.println(check.getRecordOfList(cell-1));
+                    }catch (IndexOutOfBoundsException e){
+                        System.out.println("Out of bounds");
+                    }
+
             }
         }
     }
