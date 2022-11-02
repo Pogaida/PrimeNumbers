@@ -2,15 +2,20 @@ import java.util.Scanner;
 
 public class Numbers {
 
+	private static final int PRIME_ANALYZER_RANGE_START = 6;
 	private static final int PRIME_ANALYZER_RANGE_END = 10_000_000;
 
 	public static void main(String[] args) {
-		PrimeNumberRangeAnalyzer check = new PrimeNumberRangeAnalyzer(1, PRIME_ANALYZER_RANGE_END);
+		PrimeNumberRangeAnalyzer check = new PrimeNumberRangeAnalyzer(PRIME_ANALYZER_RANGE_START,
+				PRIME_ANALYZER_RANGE_END);
+		System.out.println(
+				"Liczby pierwsze z zakresu od " + PRIME_ANALYZER_RANGE_START + " do " + PRIME_ANALYZER_RANGE_END);
+
 		Scanner scanner = new Scanner(System.in);
 
 		// Wpisujemy liczbę i sprawdzamy czy jest na liście
 		System.out.println("1. Test liczby");
-		System.out.println("2. Kolejna liczba pierwsza (od 1 do " + check.getSizeOfList() + ")");
+		System.out.println("2. Kolejna liczba pierwsza z zakresu (od 1 do " + check.getSizeOfList() + ")");
 		while (true) {
 			System.out.print("\nTwój wybór: ");
 			switch (scanner.nextInt()) {
@@ -21,7 +26,7 @@ public class Numbers {
 				if (isOnList) {
 					System.out.println("To jest liczba pierwsza.");
 				} else {
-					System.out.println("To nie jest liczba pierwsza.");
+					System.out.println("Ta liczba nie jest pierwsza lub jest poza badanym zakresem.");
 				}
 				break;
 			case 2:

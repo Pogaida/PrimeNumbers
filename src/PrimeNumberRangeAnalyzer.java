@@ -6,24 +6,38 @@ public class PrimeNumberRangeAnalyzer {
 
 	private final List<Integer> record = new ArrayList<>(PRIMES_LIST_RESERVED_CAPACITY);
 
+	private int rangeStart;
+	private int rangeEnd;
+	private int firstIndexInRange;
+
 	// konstruktor wywoujący generowanie liczb pierwszych
 	public PrimeNumberRangeAnalyzer(int from, int to) {
 		record.add(2);
-		generatingNumbers(from, to);
+		generatingNumbers(3, to);
+		rangeStart = from;
+		rangeEnd = to;
+		int i;
+		for (i = 0; i < record.size(); i++) {
+			if (record.get(i) >= from)
+				break;
+		}
+		firstIndexInRange = i;
 	}
 
 	// zwraca rozmiar listy liczb pierwszych
 	public int getSizeOfList() {
-		return record.size();
+		return record.size() - firstIndexInRange;
 	}
 
 	// zwraca daną komórkę z listy podaną przez użytkownika
 	public boolean isNumberOfList(int numer) {
+		if (numer < rangeStart)
+			return false;
 		return record.contains(numer);
 	}
 
 	public int getRecordOfList(int cell) {
-		return record.get(cell);
+		return record.get(cell + firstIndexInRange);
 	}
 
 	// generuje liczby z podanego przedziału
